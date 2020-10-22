@@ -1,0 +1,35 @@
+// Place all the styles related to the Room controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container {
+    width: 350px;
+    padding: 0 20px;
+    margin-top: 50px;
+    border: solid 1px;
+}
+
+.form-group {
+    display: flex;
+    margin: 10px 0;
+    padding-top: 5px;
+
+    input {
+        flex: 10;
+        margin-right: 10px;
+    }
+}
+
+#messages {
+    overflow-y: scroll;
+    height: 500px;
+
+    &::-webkit-scrollbar {
+        /* Chrome, Safari 対応 */
+        display: none;
+    }
+}
+
+.yours {
+    text-align: right;
+}

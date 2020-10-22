@@ -1,0 +1,5 @@
+<% if message.user == current_user %>
+<p class="yours"><%= message.content %></p>
+<% else %>
+<p class="others"><%= "#{message.user.name}: #{message.content}" %></p>
+<% end %>

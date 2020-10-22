@@ -1,0 +1,17 @@
+<h1>Chat Room</h1>
+
+<div class="container">
+    <div id="messages">
+        <%= render @messages %>
+    </div>
+    <div class="form-group">
+        <input type="text" id="chat-input" />
+        <button id="button">送信</button>
+    </div>
+</div>
+
+<script>
+    const current_user = "<%= raw current_user.name %>";
+</script>
+<%= javascript_include_tag 'channels/room' do %>
+<% end %>

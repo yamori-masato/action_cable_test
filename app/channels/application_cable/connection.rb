@@ -10,6 +10,7 @@ module ApplicationCable
     protected
       # ログイン(セッション確率)時にしかsocket通信を行わない
       def find_verified_user
+        # SPA×RailsAPIの場合はcookies.signed[:user_id]かも？
         if verified_user = User.find_by(id: request.session[:user_id])
           verified_user
         else
