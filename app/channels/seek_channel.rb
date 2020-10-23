@@ -1,11 +1,15 @@
 class SeekChannel < ApplicationCable::Channel
   def subscribed
     stream_from "game_player_#{current_user.id}"
-    Seek.create(current_user.id)
+    # Seek.create(current_user.id)
   end
 
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
+  end
+
+  def connect
+    @seek = Seek.create(current_user.id)
   end
 end
 
@@ -31,12 +35,12 @@ class Seek
 end
 
 class Game
-  def self.start(user_id1, user_id2)
+  def self.start(uid1, uid2)
 
     # ここで対戦用のChannelを保存、Channel名をそれぞれのプレイヤーに通知する
-    room = Room.create(name: "room_#{user_id1}_#{user_id2}")
+    room = Room.create(name: "room_#{uid1}_#{uid2}", user_ids: [uid1, uid2])
 
-    ActionCable.server.broadcast "game_player_#{user_id1}", { action: "battle_start", room_id: "#{room.id}" }
-    ActionCable.server.broadcast "game_player_#{user_id2}", { action: "battle_start", room_id: "#{room.id}" }
+    ActionCable.server.broadcast "game_player_#{uid1}", { action: "created the room", room_id: "#{room.id}" }
+    ActionCable.server.broadcast "game_player_#{uid2}", { action: "created the room", room_id: "#{room.id}" }
   end
 end
