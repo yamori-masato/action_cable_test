@@ -15,4 +15,4 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 
 # Rails.application.config.assets.precompile += ['channels/*']
-Rails.application.config.assets.precompile += ['room.js']
+Rails.application.config.assets.precompile += ['channels/room.js']

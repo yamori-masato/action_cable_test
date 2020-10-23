@@ -15,5 +15,9 @@
     </div>
 </div>
 
-<%= javascript_include_tag 'room' do %>
+<div data-turbolinks="false">
+<%= link_to 'Back', user_path(current_user) %>
+</div>
+
+<%= javascript_include_tag 'channels/room' do %>
 <% end %>

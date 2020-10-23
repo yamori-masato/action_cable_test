@@ -5,11 +5,11 @@
     <%= @user.name %>
 </p>
 
-<p>
+<p data-turbolinks="false">
     <strong>Chat Room:</strong>
     <% @user.rooms.each do |room| %>
-    <%= link_to room.name, room_path(room.id) %>
+    <%= link_to room.name, room_path(room.id)%>
     <% end %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Edit', edit_user_path(@user) %>

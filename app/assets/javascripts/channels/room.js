@@ -1,4 +1,5 @@
-document.addEventListener('turbolinks:load', function () {
+console.log('a')
+document.addEventListener("turbolinks:load", function () {
   console.log('loaded')
   const room_data = document.querySelector("#messages")
   const room_id = room_data.getAttribute("data-room-id")
