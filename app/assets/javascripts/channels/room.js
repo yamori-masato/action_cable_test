@@ -18,12 +18,12 @@ document.addEventListener("turbolinks:load", function () {
         let content
 
         // 以下は部分更新(追加)。ajaxかerb使って、partial呼び出せれば綺麗にかけそう
-        if (name === data.sender.name) { 
+        if (name === data.sender) { 
           child.classList.add('yours') 
           content = `<div class="message-content">${data.content}</div>`
         } else {
           child.classList.add('others') 
-          content = `<div class="message-name">${data.sender.name}</div>
+          content = `<div class="message-name">${data.sender}</div>
                       <div class="message-content">${data.content}</div>`
         }
         child.innerHTML = content
@@ -43,7 +43,6 @@ document.addEventListener("turbolinks:load", function () {
   button.addEventListener('click', function () {
       const content = input.value
       const data = {
-          room_id: room_id,
           message: content,
       }
       App.room.speak(data)
