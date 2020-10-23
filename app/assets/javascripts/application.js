@@ -14,5 +14,5 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-//= stub channels/room
-//= stub channels/seek
+
+//= stub room
