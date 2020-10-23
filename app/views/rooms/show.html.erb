@@ -1,7 +1,12 @@
 <h1>Chat Room</h1>
 
 <div class="container">
-    <div id="messages">
+    <div 
+        id="messages"
+        data-channel-subscribe="room" 
+        data-room-id="<%= @room.id %>"
+        data-user-name = <%= current_user.name %>
+    >
         <%= render @messages %>
     </div>
     <div class="form-group">
@@ -10,8 +15,5 @@
     </div>
 </div>
 
-<script>
-    const your_name = "<%= raw current_user.name %>";
-</script>
 <%= javascript_include_tag 'room' do %>
 <% end %>

@@ -28,6 +28,21 @@
         /* Chrome, Safari 対応 */
         display: none;
     }
+
+    .message {
+        margin: 20px 0;
+
+        &-name {
+            border-bottom: solid 1px;
+            width: max-content;
+            margin-bottom: 5px;
+            font-size: 0.1em;
+        }
+
+        &-content {
+            font-weight: bold;
+        }
+    }
 }
 
 .yours {

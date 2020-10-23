@@ -1,5 +1,10 @@
 <% if message.user == current_user %>
-<p class="yours"><%= message.content %></p>
+<div class="message yours">
+    <div class="message-content"><%= message.content %></div>
+</div>
 <% else %>
-<p class="others"><%= "#{message.user.name}: #{message.content}" %></p>
+<div class="message others">
+    <div class="message-name"><%= message.user.name %></div>
+    <div class="message-content"><%= message.content %></div>
+</div>
 <% end %>
