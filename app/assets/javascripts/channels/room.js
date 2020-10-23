@@ -1,4 +1,3 @@
-console.log('a')
 document.addEventListener("turbolinks:load", function () {
   console.log('loaded')
   const room_data = document.querySelector("#messages")
@@ -14,15 +13,18 @@ document.addEventListener("turbolinks:load", function () {
       disconnected: function() {},
       received: function (data) {
         const messages = document.getElementById('messages')
-        const child = document.createElement("p")
+        const child = document.createElement("div")
+        child.classList.add('message') 
+        let content
 
-        // 以下は部分更新(追加)。ajaxかerb使って、partial呼び出せればもう少し綺麗にかけそう
+        // 以下は部分更新(追加)。ajaxかerb使って、partial呼び出せれば綺麗にかけそう
         if (name === data.sender.name) { 
           child.classList.add('yours') 
-          content = data.content
+          content = `<div class="message-content">${data.content}</div>`
         } else {
           child.classList.add('others') 
-          content = `${data.sender.name}: ${data.content}`
+          content = `<div class="message-name">${data.sender.name}</div>
+                      <div class="message-content">${data.content}</div>`
         }
         child.innerHTML = content
         messages.appendChild(child)
