@@ -1,15 +1,16 @@
 class SeekChannel < ApplicationCable::Channel
   def subscribed
     stream_from "game_player_#{current_user.id}"
-    # Seek.create(current_user.id)
+    # Seek.create(current_user.id) 実際は待機画面についてすぐだからこっち　ーーーーーin
   end
 
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
+    Seek.remove(current_user.id)
   end
 
   def connect
-    @seek = Seek.create(current_user.id)
+    @seek = Seek.create(current_user.id) # ーーーーーーーーーーout
   end
 end
 
@@ -42,5 +43,13 @@ class Game
 
     ActionCable.server.broadcast "game_player_#{uid1}", { action: "created the room", room_id: "#{room.id}" }
     ActionCable.server.broadcast "game_player_#{uid2}", { action: "created the room", room_id: "#{room.id}" }
+
+    # ①user1 -> server　②server -> user2　③user2 -> server　②server -> user1  以後①~④をループ
+    # のようなモデルを確立したい場合、上でbroadcastするものをroom.id(共通)ではなく別々の値をつける ※GameChannelとする
+    # このようにすれば、　GameChannelA - Game - GameChannelB のような構図が作れるため
+    # それぞれのUserからの送信はGameChannelで受け、Game内のロジックを経てもう一方のGameChannelに返すことが出来る。
+    # ただ、こうするには Game-GameChannelの紐付けが必要。
+    # <案1> GameChannel(独立したストリーム)と別に共通のストリームを持ったGameチャンネルを作る。
+    # GameChannelAから受ける
   end
 end

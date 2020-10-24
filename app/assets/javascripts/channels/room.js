@@ -10,7 +10,14 @@ document.addEventListener("turbolinks:load", function () {
       // channelがクラス, room_id(任意)がchannel＃subscribed内のparams[:room_id]で取得できる。よってここにはroom名を指定できるものが望ましい。
       // room_idはDOMの属性で特定するようにする例が多く、そうすれば部屋を選択したタイミングでの取得が可能になる。
       connected: function() {},
-      disconnected: function() {},
+      disconnected: function () {
+        console.log("unsubscribe")
+        this.unsubscribe() //送信できなくなる
+      },
+      rejected: function () {
+        // subscriptions.createが拒否されたタイミング
+        console.log("rejected!")
+      },
       received: function (data) {
         const messages = document.getElementById('messages')
         const child = document.createElement("div")
